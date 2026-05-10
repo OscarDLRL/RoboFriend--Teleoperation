@@ -9,10 +9,10 @@ latest_data = {}
 #Camera configs
 camera = Picamera2()
 camera.configure(camera.create_preview_configuration(main={
-    "format":"",
+    "format":"RGB888",
     "size": (640,480)
     }))
-camera.start
+camera.start()
 
 
 #First thing the user sees (well not really, that's GUI work, need to change later)
@@ -37,11 +37,12 @@ def get_data():
     return jsonify(latest_data)
 
 
+# Saves on an array the jpg's
 def generate_frames():
     while True:
         frame = camera.capture_array()
-        ret,buffer = cv2.imencode("jpg",frame)
-        frame = buffer.tobytes
+        ret,buffer = cv2.imencode(".jpg",frame)
+        frame = buffer.tobytes()
         yield (
             b"--frame\r\n"
             b"Content-Type: image/jpeg\r\n\r\n" + frame  +
