@@ -1,3 +1,5 @@
+#Becomes Really slow with video, need to change later
+
 import requests
 import sys
 from PySide6 import QtCore, QtWidgets, QtGui
