@@ -1,0 +1,9 @@
+# User req
+request
+pyside6
+opencv-python
+
+# Rasp req 
+flask
+python3-opencv
+picamera2
