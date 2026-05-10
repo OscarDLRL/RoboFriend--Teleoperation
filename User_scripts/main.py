@@ -4,7 +4,7 @@ from PySide6 import QtCore, QtWidgets, QtGui
 import cv2
 
 
-Laptop = True
+Laptop = False
 
 urlRasp = "http://192.168.1.141:5000"
 urlLaptop = "http://192.168.1.137:5000"
@@ -35,7 +35,7 @@ class RoboFriendWidget(QtWidgets.QWidget):
         self.setWindowTitle("RoboFriend Teleop")
 
 
-        #Video GUI parameters
+        #Video GUI parameters (updates every 30ms)
         self.video_feed =QtWidgets.QLabel(
             "Video Here",
             alignment=QtCore.Qt.AlignCenter
@@ -46,6 +46,7 @@ class RoboFriendWidget(QtWidgets.QWidget):
         self.timer.timeout.connect(self.video_updater)
         self.timer.start(30)
 
+        # Instruction text
         self.text = QtWidgets.QLabel(
             "Use wasd for movement",
             alignment=QtCore.Qt.AlignCenter
@@ -125,9 +126,6 @@ class RoboFriendWidget(QtWidgets.QWidget):
 if __name__ == "__main__":
     
     app = QtWidgets.QApplication([])
-
-    
-
     widget = RoboFriendWidget()
     widget.resize(1000, 1000)
     widget.show()
